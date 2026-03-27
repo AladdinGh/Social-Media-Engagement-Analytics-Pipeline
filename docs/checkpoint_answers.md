@@ -181,3 +181,173 @@ Parquet is faster, compressed, and reads only needed columns.
 Task 8 — Why PostgreSQL is still useful
 
 PostgreSQL is useful for transactional systems, real-time queries, and serving data to applications, while Spark is mainly for large-scale processing.
+
+
+
+
+
+
+
+########################################   Final answers ####################################
+
+Section 1 — Business Reflection
+Q1. What is the main business problem this project is trying to solve?
+
+The project aims to transform raw social media activity into meaningful insights, helping the platform understand user engagement and content performance.
+
+Q2. Why is raw data not enough for reporting?
+
+Raw data is messy, inconsistent, and not structured for decision-making. It must be cleaned, standardized, and aggregated.
+
+Q3. Why does the company care about engagement by category, creator, and region?
+Category: Identify popular content types
+Creator: Measure influencer performance
+Region: Understand geographic trends
+Q4. How does this simulate a real data engineer role?
+
+It reflects real tasks: ingesting data, cleaning, transforming, joining datasets, optimizing performance, and producing business-ready outputs.
+
+Section 2 — Phase 1 (Day 1 Concepts)
+Q5. What is a Spark DataFrame?
+
+A distributed table of data with rows and columns, similar to a SQL table.
+
+Q6. What is a schema and why does it matter?
+
+A schema defines column types and structure, ensuring consistency and preventing errors.
+
+Q7. Why inspect raw files first?
+
+To understand data quality, structure, and potential issues before transformations.
+
+Q8. Transformation vs Action
+Transformation: Lazy operation (e.g., select, filter)
+Action: Triggers execution (e.g., show(), count())
+Q9. What is lazy evaluation?
+
+Spark delays execution until needed, optimizing performance by combining operations.
+
+Section 3 — Phase 2 (Day 3 Concepts)
+Q10. Selected columns and why?
+
+Only relevant columns like post_id, user_id, and engagement metrics were kept to reduce noise.
+
+Q11. Why rename/cast columns?
+
+To ensure consistency and correct data types for processing.
+
+Q12. Why remove nulls?
+
+To avoid inaccurate analysis and broken joins.
+
+Q13. Why remove duplicates?
+
+To prevent double counting in metrics.
+
+Q14. Why standardize text?
+
+To ensure consistent grouping (e.g., "sports" vs "SPORTS").
+
+Q15. What is a derived column?
+
+A new column created from existing data. Example: engagement_score.
+
+Q16. Purpose of engagement_score?
+
+To quantify engagement importance (LIKE < COMMENT < SHARE).
+
+Q17. Why join datasets?
+
+To create a complete view combining posts, users, and engagement.
+
+Q18. Example grouped insight
+
+Engagement by category shows which content performs best.
+
+Q19. Role of Spark SQL
+
+Enabled efficient transformations and aggregations.
+
+Q20. What is a UDF?
+
+A custom function for complex logic. Useful when built-in functions are insufficient.
+
+Section 4 — Phase 3 (Day 4 Concepts)
+Q21. Why performance awareness matters?
+
+Large datasets require efficient processing to reduce time and cost.
+
+Q22. Why cache filtered_social_media_df?
+
+It is reused multiple times, so caching avoids recomputation.
+
+Q23. What does caching do?
+
+Stores data in memory for faster reuse.
+
+Q24. What is a partition?
+
+A chunk of data processed in parallel by Spark.
+
+Q25. repartition() vs coalesce()
+repartition(): reshuffles data, increases/decreases partitions
+coalesce(): reduces partitions without full shuffle
+Q26. Why are many small files bad?
+
+They slow down systems and increase overhead.
+
+Q27. What is Parquet?
+
+A compressed, column-based file format optimized for analytics.
+
+Q28. CSV vs Parquet
+CSV: easier for humans
+Parquet: better for analytics (faster, compressed, columnar)
+Q29. Why PostgreSQL is still useful?
+
+For structured storage, querying, and reporting dashboards.
+
+Section 5 — End-to-End Reflection
+Q30. Most realistic part?
+
+Joining datasets and building aggregated reports.
+
+Q31. Most difficult part?
+
+Handling data quality issues and debugging Spark errors.
+
+Q32. Most clarified concept?
+
+Lazy evaluation and Spark execution flow.
+
+Q33. What needs improvement at scale?
+
+Partitioning strategy and performance optimization.
+
+Q34. What would you improve next?
+
+Add automation, scheduling, and better error handling.
+
+Q35. Learning reflection
+Day 1: DataFrames & basics
+Day 3: Transformations & joins
+Day 4: Optimization & output
+Section 6 — Final Reflection
+Q36. What did you learn about data engineering?
+
+It involves building scalable pipelines, not just writing code.
+
+Q37. Code vs pipeline
+Code: solves a task
+Pipeline: structured, reusable, and scalable system
+Q38. Why connect to business value?
+
+Data is only useful if it supports decisions.
+
+Q39. What are you most proud of?
+
+Building a complete end-to-end pipeline from raw data to insights.
+
+Q40. Final reflection
+
+This project demonstrated how raw data can be transformed into valuable insights using Spark. It reinforced key concepts like data cleaning, transformations, joins, and optimization, while highlighting the importance of aligning technical work with business goals.
